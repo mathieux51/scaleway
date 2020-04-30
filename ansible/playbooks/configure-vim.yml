@@ -1,0 +1,22 @@
+---
+- name: Configure vim
+  hosts: all
+  tasks:
+    - name: fetch config
+      get_url:
+        url: https://raw.githubusercontent.com/mathieux51/.cfg/master/.vimrc
+        dest: .vimrc
+    - name: clone vim plug
+      git:
+        dest: /tmp/vim-plug
+        repo: https://github.com/junegunn/vim-plug.git
+    - name: creates ~/.vim/autoload directory if doesn't exist
+      file:
+        path: ~/.vim/autoload
+        state: directory
+    - name: copy plug.vim file
+      copy:
+        src: /tmp/vim-plug/plug.vim
+        dest: ~/.vim/autoload/plug.vim
+        remote_src: yes
+...

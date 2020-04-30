@@ -1,0 +1,34 @@
+---
+- name: Install dependencies
+  hosts: all
+  tasks:
+    - name: Update and upgrade packages
+      become: yes
+      apt:
+        upgrade: 'yes'
+        update_cache: yes
+    - name: Install git
+      apt:
+        name: git
+        update_cache: yes
+    - name: Install curl
+      apt:
+        name: curl
+        state: present
+    - name: Install vim
+      apt:
+        name: vim
+        state: present
+    - name: Install vim-gtk
+      apt:
+        name: vim-gtk
+        state:  present
+    - name: Add stretch-backports repo
+      apt_repository:
+        repo: deb http://ftp.de.debian.org/debian stretch-backports main
+        state: present
+    - name: Install fzf
+      apt:
+        name: fzf
+        state: present
+...
