@@ -9,5 +9,5 @@ terraform apply
 
 ### Graph to SVG
 
-terraform graph | dot -T svg > test.svg                             
-firefox "file://$(pwd)/test.svg"  
+terraform graph | dot -T svg > test.svg
+firefox "file://$(pwd)/test.svg"
